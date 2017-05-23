@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myappp">
+<head>
+    <title>Turtle Quiz App</title>
+    <base href="/" />
+     <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-route.js"></script>
+    <script src="Scripts/angular-cookies.js"></script>
+    <script src="Scripts/angular-animate.js"></script>
+    <script src="bootstrap/jquery-ui-1.12.1.custom/external/jquery/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <script src="bootstrap/jquery-ui-1.12.1.custom/jquery-ui.js"></script> 
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />  
+    <link href="bootstrap/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet" /> 
+    <script src="js/my.js"></script> 
+    <!--<script src="../datedropper-master/datedropper.js"></script>
+    <script src="OwlCarousel-master/owl-carousel/owl.carousel.js"></script>
+    <script src="Remodal-master/dist/remodal.js"></script>-->       
+<!--    <link href="../datedropper-master/datedropper.css" rel="stylesheet" />     
+    <link href="Remodal-master/dist/remodal.css" rel="stylesheet" />
+    <link href="OwlCarousel-master/owl-carousel/owl.carousel.css" rel="stylesheet" />
+    <link href="OwlCarousel-master/owl-carousel/owl.theme.css" rel="stylesheet" />
+    <link href="Remodal-master/dist/remodal-default-theme.css" rel="stylesheet" />
+    <link href="OwlCarousel-master/owl-carousel/owl.transitions.css" rel="stylesheet" /> -->   
+</head>
+<body>
+      <style type="text/css">
+        header.header
+        {
+            text-align:center;
+            border:1px solid gray;
+            border-radius:0px 0px 4px 4px;
+            border-bottom:1px solid transparent;
+            box-shadow:-1px -1px 6px #888888;
+            letter-spacing:2px;
+            background-color:#080607;
+            color:white;
+        }
+        header.header > label
+        {
+            font-size:1.5em;
+            font-family:'Times New Roman';
+            padding:10px;
+        }
+        nav
+        {
+            border:1px solid gray;
+            border-radius: 0px 0px 4px 4px;
+            border-top:1px solid orange;
+            background-color:#f9c989;
+            
+        }
+            nav > ul
+            {
+                min-height:40px;
+                
+            }
+            /*nav.nav-pills li:hover > a
+            {
+                background-color: orangered;
+            }*/
+            nav ul li > a
+            {
+                color:black;
+            }
+            .nav li:hover > ul
+            {
+                display:block;
+                margin-left:30px;
+                background-color:#f9c989;
+            }
+        .nav li:hover > ul a
+        {
+            color:blue;
+
+        }
+        footer
+        {
+            clear:both;
+            text-align:center;
+             background-color:#a587c5;
+            border-radius:4px 4px 4px 4px;
+            border-bottom:1px solid orange;
+            opacity:0.8;
+            
+        }
+            footer > label
+            {
+                font-size:1.3em;
+                /*font-family:Georgia;*/
+                font-family:'Viner Hand ITC';
+                letter-spacing:2px;
+                color:black;
+                padding:6px;
+            }
+        main
+        {
+            border-radius:8px;
+            border:1px solid transparent;
+            margin-top:3px;
+            margin-bottom:3px;
+        }
+    </style>
+    <header class="header col-lg-12">
+        <label>Website header</label>
+    </header>
+    <nav class="col-lg-12">
+        <ul class="nav nav-tabs nav-justified">
+            <li><a href="home"><span class="glyphicon-apple glyphicon"></span>Home</a></li>
+            <li><a href="turtless"><span class="glyphicon-dashboard glyphicon"></span>Turtles</a></li>
+        </ul>
+    </nav>
+    <main class="col-lg-12">
+        <ng-view></ng-view>               
+    </main>
+
+    <footer id="footer" class="col-lg-12">
+        <label>This is a footer</label>            
+    </footer>
+</body>
+</html>

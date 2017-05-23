@@ -1,0 +1,144 @@
+﻿<div class="row">
+    <div class="col-xs-8">
+        <h4 style="font-family:Harrington;font-size:18px;" ng-bind="turtlessQuizCtrl.h2"></h4>
+        <div class="btn-toolbar">
+            <button class="btn btn-sm" ng-repeat="x in turtlessQuizCtrl.value" ng-click="turtlessQuizCtrl.SetActiveQuestion($index)" 
+                ng-class="{'btn-info': x.selected !== null, 'btn-danger':x.selected == null}">
+                <span class="glyphicon" ng-class="{'glyphicon-pencil':x.selected !==null, 'glyphicon-question-sign': x.selected == null}"></span>
+            </button>
+        </div>
+    </div>
+    <div class="col-xs-4">
+        <div class="row">
+            <h4 style="font-family:Harrington;font-size:18px;" ng-bind="turtlessQuizCtrl.h4"></h4>
+            <div class="col-sm-4">
+                <button class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil"></span></button>
+                <p style="font-family:Harrington;font-size:18px;" ng-bind="turtlessQuizCtrl.p1"></p>
+            </div>
+             <div class="col-sm-4">
+                <button class="btn btn-danger btn-sm"><span class=" glyphicon glyphicon-question-sign"></span></button>
+                 <p style="font-family:Harrington;font-size:18px;" ng-bind="turtlessQuizCtrl.p2"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="alert alert-danger" ng-show="turtlessQuizCtrl.error">
+        Error! You have not answered all of the questions...
+        <button class="close" ng-click="turtlessQuizCtrl.error=false">&times;</button>
+    </div>
+    <h3 style="font-family:Harrington;font-size:18px;" ng-bind="turtlessQuizCtrl.h3"></h3>
+    <div class="well well-sm" ng-hide="turtlessQuizCtrl.finalize">
+        <div class="row">
+            <div class="col-xs-12">
+                <h4 style="font-family:Harrington;font-size:18px;">{{turtlessQuizCtrl.activeQuestion + 1 + "." + turtlessQuizCtrl.value[turtlessQuizCtrl.activeQuestion].question}}</h4>
+                <div class="row" ng-if="turtlessQuizCtrl.value[turtlessQuizCtrl.activeQuestion].type == 'text'">
+                    <div class="col-sm-8" >
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div id="ans1" class="ans" ng-class="turtlessQuizCtrl.getAnswerClass(0)"  ng-click="turtlessQuizCtrl.selectedAnswer(0)">
+                                            {{turtlessQuizCtrl.value[turtlessQuizCtrl.activeQuestion].ans1}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div id="ans2" class="ans" ng-class="turtlessQuizCtrl.getAnswerClass(1)"  ng-click="turtlessQuizCtrl.selectedAnswer(1)">
+                                            {{turtlessQuizCtrl.value[turtlessQuizCtrl.activeQuestion].ans2}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="ans3" class="ans" ng-class="turtlessQuizCtrl.getAnswerClass(2)" ng-click="turtlessQuizCtrl.selectedAnswer(2)">
+                                            {{turtlessQuizCtrl.value[turtlessQuizCtrl.activeQuestion].ans3}}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div id="ans4" class="ans" ng-class="turtlessQuizCtrl.getAnswerClass(3)" ng-click="turtlessQuizCtrl.selectedAnswer(3)">
+                                            {{turtlessQuizCtrl.value[turtlessQuizCtrl.activeQuestion].ans4}}
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row" ng-if="turtlessQuizCtrl.value[turtlessQuizCtrl.activeQuestion].type == 'image'">
+                    <div class="col-sm-8" >
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="image-answer"  ng-click="turtlessQuizCtrl.selectedAnswer(0)">
+                                            <img ng-src="{{turtlessQuizCtrl.value[turtlessQuizCtrl.activeQuestion].ans1}}"  />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="image-answer" ng-click="turtlessQuizCtrl.selectedAnswer(1)">
+                                            <img ng-src="{{turtlessQuizCtrl.value[turtlessQuizCtrl.activeQuestion].ans2}}" /></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="image-answer" ng-click="turtlessQuizCtrl.selectedAnswer(2)">
+                                            <img ng-src="{{turtlessQuizCtrl.value[turtlessQuizCtrl.activeQuestion].ans3}}" />
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="image-answer" ng-click="turtlessQuizCtrl.selectedAnswer(3)">
+                                            <img ng-src="{{turtlessQuizCtrl.value[turtlessQuizCtrl.activeQuestion].ans4}}" />
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-warning" ng-click="turtlessQuizCtrl.questionAnswered()">
+            Continue
+        </button>
+    </div>
+
+    <div class="well well-sm" ng-show="turtlessQuizCtrl.finalize">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3>Are you sure you want to submit your answers?</h3>
+                <button class="btn btn-success" ng-click="turtlessQuizCtrl.finalizeAnswers()">Yes</button>
+                <button class="btn btn-danger" ng-click="turtlessQuizCtrl.finalize = false">No</button>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="turtlessQuizCtrl.resultActive">
+        <!--{{turtlessQuizCtrl.score}}-->
+    </div>
+</div>
+
+<style type="text/css">
+    table.table .ans
+    {
+        cursor:pointer;
+        padding:15px 20px;
+        border-radius:10px;
+        border:1px solid #bbb;
+    }
+    table.table div.image-answer
+    {
+        cursor:pointer;
+        height:350px;
+        width:100%;
+        overflow:hidden;
+        border-radius:10px;
+        margin-bottom:20px;
+       
+    }
+        table.table div.image-answer img
+        {
+            width:100%;
+            height:350px;
+        }
+</style>

@@ -1,0 +1,80 @@
+﻿<div class="text-center">
+    <p><strong>{{turtlesCtrl.message}}</strong></p>
+    <p><strong>{{turtlesCtrl.message2}}</strong></p>
+</div>
+<div>  
+    <form class="form-inline well well-sm">
+        <span class="glyphicon-search glyphicon"></span>
+        <input type="text" placeholder="Search...." ng-model="searchk" class="form-control" />
+        <a href="turtlessQuiz" class="btn btn-success pull-right">
+           <span class="glyphicon glyphicon-qrcode"></span> Start Quiz
+        </a>      
+    </form>
+    <div>
+        <div class="row">
+            <div class="col-sm-6" ng-repeat="x in turtlesCtrl.value | filter:searchk">
+                <div class="well well-sm">
+                    <div class="row">
+                        <div class="col-md-6 img">
+                            <img ng-src="{{x.flag}}" alt="{{x.type}}" class="img-rounded img-responsive" />
+                        </div>
+                        <div class="col-md-6">
+                            <h4>{{x.type}}</h4>
+                            <p><strong>Locations:</strong>{{x.locations}}</p>
+                            <p><strong>Size:</strong>{{x.size}}</p>
+                            <p><strong>Average LifeSpan:</strong>{{x.lifespan}}</p>
+                            <p><strong>Diet:</strong>{{x.diet}}</p>
+                            <button data-toggle="modal" data-target="#turtle-info" ng-click="turtlesCtrl.changeActiveTurtle(x)" value="" class="btn-primary btn pull-right">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="">
+            <div class="modal" id="turtle-info">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>{{turtlesCtrl.activeTurtle.type}}</h2>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-8 col-xs-offset-2">
+                                    <img ng-src="{{turtlesCtrl.activeTurtle.flag}}" alt="{{turtlesCtrl.activeTurtle.type}}" class="img-responsive img-rounded" />
+                                </div>
+                            </div>
+                            <div class="row ds">
+                                <div class="col-md-6">
+                                    <p><strong>Locations:</strong>{{turtlesCtrl.activeTurtle.locations}}</p>
+                                    <p><strong>Size:</strong>{{turtlesCtrl.activeTurtle.size}}</p>
+                                    <p><strong>Average LifeSpan:</strong>{{turtlesCtrl.activeTurtle.lifespan}}</p>
+                                    <p><strong>Diet:</strong>{{turtlesCtrl.activeTurtle.diet}}</p>
+                                </div>
+                                <div class="col-xs-12">
+                                    <p style="letter-spacing: 1px; font-family: Arial;">{{turtlesCtrl.activeTurtle.description}}</p>
+                                </div>
+                                <button class="btn btn-danger pull-right" data-dismiss="modal" style="margin-right: 20px;">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    div.img > img
+    {
+        width:100%;
+        height:162px;
+    }
+    div.ds > p
+    {
+        letter-spacing:2px;
+        font-family:Arial;
+    }
+</style>
+<!--<ul ng-repeat="x in turtlesCtrl.turtles">
+    <li>{{x}}</li>
+</ul>-->
+
